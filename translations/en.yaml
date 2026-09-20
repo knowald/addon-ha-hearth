@@ -1,0 +1,2 @@
+network:
+  8099/tcp: "Optional. Port to expose externally, bypassing Ingress. Example: 5050"

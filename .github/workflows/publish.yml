@@ -1,0 +1,53 @@
+name: "Publish"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Publish ${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # base images pinned by digest so a mutated :latest cannot change what
+        # CI builds without a repository change; bump digests deliberately
+        include:
+          - arch: amd64
+            os: ubuntu-24.04
+            base: ghcr.io/home-assistant/amd64-base:latest@sha256:2b60b12b34ccd960fda082d223b40dbb2b0bb40af95f12912233b736f27fc47a
+          - arch: aarch64
+            os: ubuntu-24.04-arm
+            base: ghcr.io/home-assistant/aarch64-base:latest@sha256:2ac8f73090063ac23e63a1adc144bd1d8aa88f5e5d92c68898102e81046084a4
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Read add-on version
+        id: version
+        run: |
+          version=$(grep -m1 '^version:' config.yaml | sed -E 's/^version:[[:space:]]*//')
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+
+      - name: Build and publish
+        uses: home-assistant/builder/actions/build-image@4de35182ce1e329181bffcbcc84d33db5e2c7e10 # 2026.06.0
+        with:
+          arch: ${{ matrix.arch }}
+          image: ghcr.io/knowald/addon-ha-hearth-${{ matrix.arch }}
+          version: ${{ steps.version.outputs.version }}
+          build-args: |
+            BUILD_FROM=${{ matrix.base }}
+          container-registry: ghcr.io
+          container-registry-username: ${{ github.actor }}
+          container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          image-tags: |
+            ${{ steps.version.outputs.version }}
+            latest
+          push: "true"
+          cosign: "false"
