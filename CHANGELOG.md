@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Track [Hearth 0.1.3](https://github.com/knowald/ha-hearth/releases/tag/0.1.3), reusing the Home Assistant app panel login so embedded Ingress no longer hits Invalid redirect URI.
+
 ## 0.1.2
 
 - Track [Hearth 0.1.2](https://github.com/knowald/ha-hearth/releases/tag/0.1.2), restoring Nabu Casa Ingress login using Fusion's forwarded origin and OAuth redirect URL.
