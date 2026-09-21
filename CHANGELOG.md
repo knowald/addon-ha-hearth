@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Track [Hearth 0.1.2](https://github.com/knowald/ha-hearth/releases/tag/0.1.2), restoring Nabu Casa Ingress login using Fusion's forwarded origin and OAuth redirect URL.
+
 ## 0.1.1
 
 - Track [Hearth 0.1.1](https://github.com/knowald/ha-hearth/releases/tag/0.1.1), fixing HTTPS Ingress and Nabu Casa login, retry recovery, dashboard links and the configuration editor dependency.
