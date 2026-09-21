@@ -10,6 +10,27 @@ To add the repository by hand, open Settings, Add-ons, Add-on Store, then Reposi
 
 Hearth appears in the sidebar and is served over Ingress. Setting a port in the add-on configuration exposes it directly as well, which is what wall tablets should use. Dashboard configuration is stored on the add-on's own volume and survives updates.
 
+## Direct access
+
+When exposing a port for a wall tablet, set **Home Assistant URL for direct access**
+(`hass_public_url`) in the add-on configuration to a Home Assistant address the
+browser can reach, for example:
+
+```yaml
+hass_public_url: http://homeassistant.local:8123
+```
+
+If Hearth is served over HTTPS, use an HTTPS Home Assistant URL, such as your
+Nabu Casa address. Restart the add-on after changing this setting.
+
+Ingress requires no URL configuration and always uses the current Home Assistant
+origin, even when this option is set. The server continues using the internal
+Home Assistant address for proxy requests.
+
+This option requires a Hearth release containing
+[the Ingress authentication fix](https://github.com/knowald/ha-hearth/pull/7).
+The add-on must be updated to that matching version when it is released.
+
 ## How it builds
 
 `version` in `config.yaml` names the `ha-hearth` tag the image is built from, so the add-on and the application move together. Pushing to `main` builds `ghcr.io/knowald/addon-ha-hearth-{arch}` for `aarch64` and `amd64` against pinned Home Assistant base images.
