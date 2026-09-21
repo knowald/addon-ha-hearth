@@ -27,12 +27,18 @@ Ingress requires no URL configuration and always uses the current Home Assistant
 origin, even when this option is set. The server continues using the internal
 Home Assistant address for proxy requests.
 
-This option requires a Hearth release containing
-[the Ingress authentication fix](https://github.com/knowald/ha-hearth/pull/7).
-The add-on must be updated to that matching version when it is released.
+This option is available from version `0.1.1`.
 
 ## How it builds
 
-`version` in `config.yaml` names the `ha-hearth` tag the image is built from, so the add-on and the application move together. Pushing to `main` builds `ghcr.io/knowald/addon-ha-hearth-{arch}` for `aarch64` and `amd64` against pinned Home Assistant base images.
+`version` in `config.yaml` names the `ha-hearth` tag the image is built from, so the add-on and the application move together. Publishing a matching GitHub release builds `ghcr.io/knowald/addon-ha-hearth-{arch}` for `aarch64` and `amd64` against pinned Home Assistant base images.
 
 The published container packages must be public for the Supervisor to pull them. GitHub creates them private on the first push; change that once per package under Packages, Package settings, Change visibility. Later pushes keep the setting.
+
+## Releasing
+
+Publish the matching Hearth source tag first. Then update `version` in `config.yaml`
+and `CHANGELOG.md`, push the changes, and publish a GitHub release with that exact
+tag (no `v` prefix). The workflow verifies that the tag matches the configured
+version and publishes both architecture images. Ordinary pushes do not publish
+images. Manual recovery builds must run from the matching release tag.
