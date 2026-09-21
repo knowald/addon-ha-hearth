@@ -33,5 +33,10 @@ hassio_api: true
 ports:
   8099/tcp: null
 
+# Browser-facing Home Assistant URL for direct-port access.
+options: {}
+schema:
+  hass_public_url: url?
+
 # published by .github/workflows/publish.yml
 image: ghcr.io/knowald/addon-ha-hearth-{arch}

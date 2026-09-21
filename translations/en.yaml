@@ -1,2 +1,10 @@
+configuration:
+  hass_public_url:
+    name: Home Assistant URL for direct access
+    description: >-
+      Home Assistant URL reachable by your browser when opening Hearth through
+      its exposed port, for example http://homeassistant.local:8123. Use HTTPS
+      when Hearth is served over HTTPS. Ingress automatically uses its own
+      Home Assistant origin and ignores this setting.
 network:
   8099/tcp: "Optional. Port to expose externally, bypassing Ingress. Example: 5050"
