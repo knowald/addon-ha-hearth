@@ -1,3 +1,7 @@
+## 0.2.0
+
+- Track [Hearth 0.2.0](https://github.com/knowald/ha-hearth/releases/tag/0.2.0): the configuration editor exports and imports YAML files, every save keeps a restorable version of the dashboard, the phone layout folds the rail around the page, and importing from Home Assistant builds a page per area with its cameras, covers, thermostats and sensors.
+
 ## 0.1.3
 
 - Track [Hearth 0.1.3](https://github.com/knowald/ha-hearth/releases/tag/0.1.3), reusing the Home Assistant app panel login so embedded Ingress no longer hits Invalid redirect URI.
