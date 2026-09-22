@@ -42,3 +42,10 @@ and `CHANGELOG.md`, push the changes, and publish a GitHub release with that exa
 tag (no `v` prefix). The workflow verifies that the tag matches the configured
 version and publishes both architecture images. Ordinary pushes do not publish
 images. Manual recovery builds must run from the matching release tag.
+
+`CHANGELOG.md` follows [Common Changelog](https://common-changelog.org/): one
+`## [VERSION] - YYYY-MM-DD` entry per release, newest first, with `Changed`,
+`Added`, `Removed` and `Fixed` groups in that order, imperative entries, and a
+reference link per version at the bottom. The Hearth version an add-on release
+tracks goes under `Changed`, or `Fixed` when that Hearth release only fixes bugs,
+linked to its Hearth release.
