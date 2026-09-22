@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0] - 2026-09-23
+
+### Changed
+
+- Track [Hearth 0.3.0](https://github.com/knowald/ha-hearth/releases/tag/0.3.0): the boot screen explains a failed connection and offers Retry, sign-in waits for Home Assistant to accept the token, unreadable configuration files are reported instead of silently replaced, garage doors and gates confirm on every path, the back button closes popups and sheets, and editors, tiles and rail widgets behave the same across surfaces
+
 ## [0.2.0] - 2026-09-22
 
 ### Changed
@@ -36,6 +42,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.3.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.3.0
 [0.2.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.2.0
 [0.1.3]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.1.3
 [0.1.2]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.1.2
