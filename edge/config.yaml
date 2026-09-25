@@ -1,0 +1,43 @@
+# required configuration options
+name: Hearth (edge)
+# set by .github/workflows/edge.yml to <hearth version>-edge.<commit>
+version: 0.3.0
+slug: ha_hearth_edge
+description: Nightly builds of the Hearth development branch, which may break without notice
+arch:
+  - aarch64
+  - amd64
+
+# disable the docker default system init
+init: false
+
+# homepage of the add-on
+url: https://github.com/knowald/addon-ha-hearth
+
+# icon for the menu panel integration
+panel_icon: mdi:fireplace
+
+# allow non-administration users
+panel_admin: false
+
+# security profile
+apparmor: true
+
+# ingress feature for the add-on
+ingress: true
+ingress_stream: true
+
+# enable api to get host port
+hassio_api: true
+
+# port to expose, null defaults to disabled
+ports:
+  8099/tcp: null
+
+# Browser-facing Home Assistant URL for direct-port access.
+options: {}
+schema:
+  hass_public_url: url?
+
+# published by .github/workflows/publish.yml
+image: ghcr.io/knowald/addon-ha-hearth-{arch}

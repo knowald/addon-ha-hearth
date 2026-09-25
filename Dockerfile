@@ -7,10 +7,14 @@ FROM --platform=$BUILDPLATFORM node:24 AS builder
 WORKDIR /app
 
 # ha builder passes BUILD_VERSION from config.yaml, so the addon builds the
-# matching ha-hearth release tag instead of whatever master happens to be
+# matching ha-hearth release tag instead of whatever master happens to be.
+# Edge builds set HEARTH_REF to a master commit instead.
 ARG BUILD_VERSION
+ARG HEARTH_REF=${BUILD_VERSION}
 
-RUN git clone --depth 1 --branch "${BUILD_VERSION}" https://github.com/knowald/ha-hearth . && \
+RUN git init -q . && \
+  git fetch -q --depth 1 https://github.com/knowald/ha-hearth "${HEARTH_REF}" && \
+  git checkout -q FETCH_HEAD && \
   npm install -g pnpm && \
   pnpm install --frozen-lockfile && \
   pnpm run build && \

@@ -2,16 +2,108 @@ name: "Publish"
 
 on:
   workflow_dispatch:
+    inputs:
+      channel:
+        description: "release rebuilds the selected tag, edge builds Hearth master"
+        type: choice
+        options: [release, edge]
+        default: release
   release:
     types: [published]
+  schedule:
+    - cron: "17 3 * * *"
 
 permissions:
   contents: read
   packages: write
 
+concurrency:
+  group: publish-${{ github.event_name == 'schedule' && 'edge' || inputs.channel || 'release' }}
+
 jobs:
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-24.04
+    outputs:
+      channel: ${{ steps.version.outputs.channel }}
+      version: ${{ steps.version.outputs.version }}
+      ref: ${{ steps.version.outputs.ref }}
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || github.ref }}
+
+      - name: Read add-on version
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EDGE: ${{ github.event_name == 'schedule' || inputs.channel == 'edge' }}
+          PRERELEASE: ${{ github.event.release.prerelease }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          REF_NAME: ${{ github.ref_name }}
+          REF_TYPE: ${{ github.ref_type }}
+        run: |
+          read_version() {
+            grep -m1 '^version:' "$1" | sed -E 's/^version:[[:space:]]*//'
+          }
+
+          # edge follows Hearth master, but only commits whose CI passed
+          if [[ "$EDGE" == "true" ]]; then
+            commit=$(gh api repos/knowald/ha-hearth/commits/master --jq .sha)
+            short=${commit:0:7}
+            conclusion=$(gh api -X GET "repos/knowald/ha-hearth/commits/$commit/check-runs" \
+              -f check_name="Check, lint and build" --jq '.check_runs[0].conclusion // "missing"')
+            if [[ "$conclusion" != "success" ]]; then
+              echo "::notice::Hearth CI for $short is $conclusion, not publishing edge."
+              exit 0
+            fi
+            hearth=$(gh api "repos/knowald/ha-hearth/contents/package.json?ref=$commit" \
+              -H "Accept: application/vnd.github.raw" | jq -r .version)
+            version="${hearth%%-*}-edge.$short"
+            if [[ "$version" == "$(read_version edge/config.yaml)" ]]; then
+              echo "::notice::Edge is already at $version."
+              exit 0
+            fi
+            {
+              echo "channel=edge"
+              echo "version=$version"
+              echo "ref=$commit"
+            } >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          tag="${RELEASE_TAG:-$REF_NAME}"
+          if [[ -z "$RELEASE_TAG" && "$REF_TYPE" != "tag" ]]; then
+            echo "Manual publishing must run from a release tag." >&2
+            exit 1
+          fi
+          if [[ "$tag" == *-* ]]; then
+            channel=beta
+            config=beta/config.yaml
+          else
+            channel=latest
+            config=config.yaml
+          fi
+          if [[ -n "$RELEASE_TAG" && "$PRERELEASE" != "$([[ $channel == beta ]] && echo true || echo false)" ]]; then
+            echo "Release $tag must be a pre-release exactly when its tag has a pre-release suffix." >&2
+            exit 1
+          fi
+          version=$(read_version "$config")
+          if [[ "$tag" != "$version" ]]; then
+            echo "Release tag $tag does not match $config version $version." >&2
+            exit 1
+          fi
+          {
+            echo "channel=$channel"
+            echo "version=$version"
+            echo "ref=$version"
+          } >> "$GITHUB_OUTPUT"
+
   publish:
     name: Publish ${{ matrix.arch }}
+    needs: prepare
+    if: needs.prepare.outputs.version != ''
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -31,38 +123,45 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name || github.ref }}
 
-      - name: Read add-on version
-        id: version
-        env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
-          REF_NAME: ${{ github.ref_name }}
-          REF_TYPE: ${{ github.ref_type }}
-        run: |
-          version=$(grep -m1 '^version:' config.yaml | sed -E 's/^version:[[:space:]]*//')
-          tag="${RELEASE_TAG:-$REF_NAME}"
-          if [[ -z "$RELEASE_TAG" && "$REF_TYPE" != "tag" ]]; then
-            echo "Manual publishing must run from a release tag." >&2
-            exit 1
-          fi
-          if [[ "$tag" != "$version" ]]; then
-            echo "Release tag $tag does not match config.yaml version $version." >&2
-            exit 1
-          fi
-          echo "version=${version}" >> "$GITHUB_OUTPUT"
-
       - name: Build and publish
         uses: home-assistant/builder/actions/build-image@4de35182ce1e329181bffcbcc84d33db5e2c7e10 # 2026.06.0
         with:
           arch: ${{ matrix.arch }}
           image: ghcr.io/knowald/addon-ha-hearth-${{ matrix.arch }}
-          version: ${{ steps.version.outputs.version }}
+          version: ${{ needs.prepare.outputs.version }}
           build-args: |
             BUILD_FROM=${{ matrix.base }}
+            HEARTH_REF=${{ needs.prepare.outputs.ref }}
           container-registry: ghcr.io
           container-registry-username: ${{ github.actor }}
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
           image-tags: |
-            ${{ steps.version.outputs.version }}
-            latest
+            ${{ needs.prepare.outputs.version }}
+            ${{ needs.prepare.outputs.channel }}
           push: "true"
           cosign: "false"
+
+  # the Supervisor offers an update when the version in config.yaml changes,
+  # so edge/config.yaml moves only after both images exist
+  update-edge:
+    name: Update edge version
+    needs: [prepare, publish]
+    if: needs.prepare.outputs.channel == 'edge'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Commit the edge version
+        env:
+          VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          sed -i -E "s/^version:.*/version: $VERSION/" edge/config.yaml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore(edge): track ha-hearth $VERSION"
+          git push
