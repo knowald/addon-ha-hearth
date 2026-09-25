@@ -1,7 +1,7 @@
 # required configuration options
 name: Hearth (edge)
 # set by .github/workflows/edge.yml to <hearth version>-edge.<commit>
-version: 0.3.0
+version: 0.3.0-edge.9675f16
 slug: ha_hearth_edge
 description: Nightly builds of the Hearth development branch, which may break without notice
 arch:
