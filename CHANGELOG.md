@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.0] - 2026-09-26
+
+### Changed
+
+- Track [Hearth 0.4.0](https://github.com/knowald/ha-hearth/releases/tag/0.4.0): web pages such as Music Assistant can be embedded as cards on any page, header cards and the theme take a background image from a URL or an upload, WebRTC-only cameras play, cameras without a stream keep their snapshot, and Hearth loads behind an nginx reverse proxy with default buffers
+
+### Added
+
+- Add the beta and edge add-ons, which track Hearth prereleases and the latest `master` build
+
 ## [0.3.0] - 2026-09-23
 
 ### Changed
@@ -42,6 +52,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.4.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.4.0
 [0.3.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.3.0
 [0.2.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.2.0
 [0.1.3]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.1.3

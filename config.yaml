@@ -1,6 +1,6 @@
 # required configuration options
 name: Hearth
-version: 0.3.0
+version: 0.4.0
 slug: ha_hearth
 description: An independent Home Assistant dashboard for wall tablets, phones and desktops
 arch:
