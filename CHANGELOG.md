@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.5.1] - 2026-09-29
+
+### Changed
+
+- Track [Hearth 0.5.1](https://github.com/knowald/ha-hearth/releases/tag/0.5.1)
+
+### Fixed
+
+- Stack the media popup's queue under the player on phones, so the playback controls get the full width
+- Keep a card's column count to at most two on phones, and one tile per row while editing
+- Stop a vertical drag or a second finger on a light or blind tile from toggling it or opening its popup
+- Set the value where you tap on a popup slider
+- Keep edit sheets, toasts, the edit button and the wide layout clear of the notch and the home indicator
+- Stop iOS zooming in when a text field gets focus
+- Give drag handles, progress bars and volume bars a finger-sized touch area
+
 ## [0.5.0] - 2026-09-28
 
 ### Changed
@@ -58,6 +74,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.5.1]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.5.1
 [0.5.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.5.0
 [0.4.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.4.0
 [0.3.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.3.0
