@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.7.0] - 2026-10-04
+
+### Changed
+
+- Track [Hearth 0.7.0](https://github.com/knowald/ha-hearth/releases/tag/0.7.0)
+- Regroup Hearth's settings by what they affect, with settings per screen under This screen
+
+### Added
+
+- Show Hearth in every language Home Assistant ships
+- Tap a card to edit it, duplicate and move cards between pages, undo a removal, and get asked before unsaved changes are dropped
+- Set tap and hold actions on tiles, let automations switch pages and wake or sleep the screen, and style tiles by conditions
+- Render templates in a card and in tile names and states, and show to-do lists
+- Edit, copy and paste single cards as YAML, and share themes
+- Show photos, a sun sky or the playing track on the sleep screen
+- Seasonal themes, a theme schedule, a look per page and cards that span columns
+- A tablet step with a QR code at the end of setup, starter layouts and a favorites page on phones
+
 ## [0.6.0] - 2026-10-03
 
 ### Changed
@@ -81,6 +99,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.7.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.7.0
 [0.6.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.6.0
 [0.5.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.5.0
 [0.4.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.4.0
