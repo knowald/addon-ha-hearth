@@ -5,18 +5,18 @@
 ### Changed
 
 - Track [Hearth 0.7.0](https://github.com/knowald/ha-hearth/releases/tag/0.7.0)
-- Regroup Hearth's settings by what they affect, with settings per screen under This screen
+- Group Hearth's settings by what they affect, with per-screen settings under This screen
 
 ### Added
 
-- Show Hearth in every language Home Assistant ships
-- Tap a card to edit it, duplicate and move cards between pages, undo a removal, and get asked before unsaved changes are dropped
-- Set tap and hold actions on tiles, let automations switch pages and wake or sleep the screen, and style tiles by conditions
-- Render templates in a card and in tile names and states, and show to-do lists
-- Edit, copy and paste single cards as YAML, and share themes
-- Show photos, a sun sky or the playing track on the sleep screen
-- Seasonal themes, a theme schedule, a look per page and cards that span columns
-- A tablet step with a QR code at the end of setup, starter layouts and a favorites page on phones
+- Show Hearth in every language Home Assistant supports
+- Tap a card to edit it, duplicate cards, move them between pages and undo a removal
+- Ask before unsaved changes are dropped
+- Set tap and hold actions on tiles
+- Let automations switch pages and wake or sleep the screen
+- Show to-do lists and render templates in cards
+- Show photos, a sky that follows the sun or the playing track on the sleep screen
+- Change the theme on a schedule or by season
 
 ## [0.6.0] - 2026-10-03
 
@@ -26,74 +26,74 @@
 
 ### Added
 
-- Scale the whole interface from 50 to 200 percent, with a separate scale for phone-width screens
-- Set separate side and top/bottom padding for phone-width screens
+- Scale the whole interface from 50 to 200 percent, with a separate scale for phones
+- Set separate side and top/bottom padding for phones
 - Show a small clock with the date at the start of the phone page strip
-- Highlight an entity tile from another entity or a list of states while it keeps showing its own state
+- Highlight an entity tile from another entity or a list of states
 
 ### Fixed
 
-- Stack the media popup's queue under the player on phones, so the playback controls get the full width
-- Keep a card's column count to at most two on phones, and one tile per row while editing
-- Stop a vertical drag or a second finger on a light or blind tile from toggling it or opening its popup
-- Set the value where you tap on a popup slider
-- Keep edit sheets, toasts, the edit button and the wide layout clear of the notch and the home indicator
-- Stop iOS zooming in when a text field gets focus
-- Give drag handles, progress bars and volume bars a finger-sized touch area
+- Give the media popup's playback controls the full width on phones
+- Show at most two columns per card on phones, and one tile per row while editing
+- Stop a vertical drag or a second finger on a light or blind tile from toggling it
+- Set a popup slider where you tap it
+- Keep sheets, toasts and the edit button clear of the notch and the home indicator
+- Stop iOS from zooming in when you tap a text field
+- Make drag handles, progress bars and volume bars easier to touch
 
 ## [0.5.0] - 2026-09-28
 
 ### Changed
 
-- Track [Hearth 0.5.0](https://github.com/knowald/ha-hearth/releases/tag/0.5.0): the sidebar can sit on the left, the right, both sides or be hidden, pages change with a sideways swipe, alerts come from dashboard rules or Home Assistant automations and can pop up on the screen, the sleep screen can show an image or a live weather radar map, and taps on touch screens no longer show the browser's own highlight
+- Track [Hearth 0.5.0](https://github.com/knowald/ha-hearth/releases/tag/0.5.0), which adds a movable sidebar, swipe between pages, alerts and sleep screen images
 
 ## [0.4.0] - 2026-09-26
 
 ### Changed
 
-- Track [Hearth 0.4.0](https://github.com/knowald/ha-hearth/releases/tag/0.4.0): web pages such as Music Assistant can be embedded as cards on any page, header cards and the theme take a background image from a URL or an upload, WebRTC-only cameras play, cameras without a stream keep their snapshot, and Hearth loads behind an nginx reverse proxy with default buffers
+- Track [Hearth 0.4.0](https://github.com/knowald/ha-hearth/releases/tag/0.4.0), which adds web page cards, background images and WebRTC camera support
 
 ### Added
 
-- Add the beta and edge add-ons, which track Hearth prereleases and the latest `master` build
+- Add the beta and edge add-ons, which follow Hearth prereleases and the latest `master` build
 
 ## [0.3.0] - 2026-09-23
 
 ### Changed
 
-- Track [Hearth 0.3.0](https://github.com/knowald/ha-hearth/releases/tag/0.3.0): the boot screen explains a failed connection and offers Retry, sign-in waits for Home Assistant to accept the token, unreadable configuration files are reported instead of silently replaced, garage doors and gates confirm on every path, the back button closes popups and sheets, and editors, tiles and rail widgets behave the same across surfaces
+- Track [Hearth 0.3.0](https://github.com/knowald/ha-hearth/releases/tag/0.3.0), which explains connection and configuration errors on screen
 
 ## [0.2.0] - 2026-09-22
 
 ### Changed
 
-- Track [Hearth 0.2.0](https://github.com/knowald/ha-hearth/releases/tag/0.2.0): the configuration editor exports and imports YAML files, every save keeps a restorable version of the dashboard, the phone layout folds the rail around the page, and importing from Home Assistant builds a page per area with its cameras, covers, thermostats and sensors
+- Track [Hearth 0.2.0](https://github.com/knowald/ha-hearth/releases/tag/0.2.0), which adds YAML export and import, saved versions and a better phone layout
 
 ## [0.1.3] - 2026-09-21
 
 ### Fixed
 
-- Track [Hearth 0.1.3](https://github.com/knowald/ha-hearth/releases/tag/0.1.3), which reuses the Home Assistant app panel login so embedded Ingress no longer hits Invalid redirect URI
+- Track [Hearth 0.1.3](https://github.com/knowald/ha-hearth/releases/tag/0.1.3), which fixes the Invalid redirect URI error in Ingress
 
 ## [0.1.2] - 2026-09-21
 
 ### Fixed
 
-- Track [Hearth 0.1.2](https://github.com/knowald/ha-hearth/releases/tag/0.1.2), which restores Nabu Casa Ingress login with the forwarded origin and OAuth redirect URL
+- Track [Hearth 0.1.2](https://github.com/knowald/ha-hearth/releases/tag/0.1.2), which fixes login through Nabu Casa Ingress
 
 ## [0.1.1] - 2026-09-21
 
 ### Changed
 
-- Publish images on releases rather than on every push, so development pushes no longer overwrite released versions
+- Publish images on releases only, so development pushes no longer overwrite released versions
 
 ### Added
 
-- Add the optional `hass_public_url` setting for direct-port access; Ingress always uses the current Home Assistant origin
+- Add the optional `hass_public_url` setting for direct-port access
 
 ### Fixed
 
-- Track [Hearth 0.1.1](https://github.com/knowald/ha-hearth/releases/tag/0.1.1), which fixes HTTPS Ingress and Nabu Casa login, retry recovery, dashboard links and the configuration editor dependency
+- Track [Hearth 0.1.1](https://github.com/knowald/ha-hearth/releases/tag/0.1.1), which fixes login through HTTPS Ingress and Nabu Casa
 
 ## [0.1.0] - 2026-09-20
 
