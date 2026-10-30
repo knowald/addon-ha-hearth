@@ -8,7 +8,13 @@ Home Assistant add-on for [Hearth](https://github.com/knowald/ha-hearth), a dash
 
 To add the repository by hand, open Settings, Add-ons, Add-on Store, then Repositories from the overflow menu, and paste `https://github.com/knowald/addon-ha-hearth`. Install Hearth from the store once the repository is listed, then start it.
 
-Hearth appears in the sidebar and is served over Ingress. Setting a port in the add-on configuration exposes it directly as well, which is what wall tablets should use. Dashboard configuration is stored on the add-on's own volume and survives updates.
+Hearth appears in the sidebar and is served over Ingress. Setting a port in the add-on configuration exposes it directly as well, which is what wall tablets should use.
+
+## Configuration files
+
+The dashboard is stored in the add-on's config folder, which survives updates and is part of Home Assistant backups. The SSH and Samba add-ons show it as `/addon_configs/<id>_ha_hearth`, where `<id>` depends on the repository. Earlier versions kept it on the add-on's private volume; the first start of a newer version copies it over and leaves the old copy in place.
+
+Hearth picks up files edited there on its next read and keeps the version it wrote last under Settings, Versions. Agents can also use the MCP server and the agent API on the direct-access port; see [agents](https://github.com/knowald/ha-hearth/blob/master/docs/agents.md).
 
 ## Channels
 

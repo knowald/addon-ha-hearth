@@ -34,10 +34,10 @@ COPY --from=builder /app/package.json .
 # copy run
 COPY run.sh /
 
-# install node, point the app's data directory at the supervisor volume so the
-# dashboard survives updates, and chmod run
+# install node, point the app's data directory at the add-on config folder so
+# the dashboard survives updates and SSH, Samba and backups reach it, and chmod run
 RUN apk add --no-cache nodejs-current && \
-  ln -s /data /rootfs/data && \
+  ln -s /config /rootfs/data && \
   chmod a+x /run.sh
 
 # set environment
