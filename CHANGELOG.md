@@ -14,6 +14,7 @@
 - Move the dashboard a few pixels once a minute to protect OLED screens from burn-in
 - Preview the sleep screen in Settings and change its clock font, position and background
 - Keep a screen black while a presence sensor reports nobody around
+- Keep the dashboard in the add-on config folder, where the SSH and Samba add-ons and Home Assistant backups reach it. The first start copies it over from the old location
 
 ## [0.7.0] - 2026-10-05
 

@@ -30,6 +30,12 @@ ingress_stream: true
 # enable api to get host port
 hassio_api: true
 
+# the dashboard lives in the add-on's config folder, which the SSH and Samba
+# add-ons see under /addon_configs and backups include
+map:
+  - type: addon_config
+    read_only: false
+
 # port to expose, null defaults to disabled
 ports:
   8099/tcp: null
