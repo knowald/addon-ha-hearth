@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.8.0] - 2026-10-30
+
+### Changed
+
+- Track [Hearth 0.8.0](https://github.com/knowald/ha-hearth/releases/tag/0.8.0)
+- **Breaking:** Require a Home Assistant token for every save, so scripts that save without one now get an error
+- Put every setting in one Settings sheet, with a section list and a search field
+
+### Added
+
+- Let AI agents and scripts change the dashboard through an agent API or an MCP server
+- Move the dashboard a few pixels once a minute to protect OLED screens from burn-in
+- Preview the sleep screen in Settings and change its clock font, position and background
+- Keep a screen black while a presence sensor reports nobody around
+
 ## [0.7.0] - 2026-10-05
 
 ### Changed
@@ -99,6 +114,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.8.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.8.0
 [0.7.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.7.0
 [0.6.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.6.0
 [0.5.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.5.0
