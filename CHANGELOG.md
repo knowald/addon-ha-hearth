@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.10.0] - 2026-10-31
+
+### Changed
+
+- Track [Hearth 0.10.0](https://github.com/knowald/ha-hearth/releases/tag/0.10.0)
+- Move page tabs, search, edit and screen settings into a bar at the bottom of the phone screen
+- Show the time, date and weather in one row at the top of the phone screen instead of the large clock and weather card
+- Show the clock's AM or PM small on the same line as the time
+- Put the thermostat target between its minus and plus buttons on the temperature card
+- Show the page header readings as plain values instead of boxes
+- Lay out the Settings sheet in label and control rows with a single close button
+- Show whether a This screen setting follows the dashboard, with a link to reset it
+- Group the card types when adding a card and preview the selected one
+- Start new entity and climate cards with entities from the page
+
+### Added
+
+- Choose which readings a page header or header card shows
+
+### Fixed
+
+- Draw a single focus outline on the card search field
+
 ## [0.9.0] - 2026-10-31
 
 ### Changed
@@ -134,6 +157,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.10.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.10.0
 [0.9.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.9.0
 [0.8.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.8.0
 [0.7.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.7.0
