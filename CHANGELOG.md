@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.9.0] - 2026-10-31
+
+### Changed
+
+- Track [Hearth 0.9.0](https://github.com/knowald/ha-hearth/releases/tag/0.9.0)
+
+### Added
+
+- Fade the screen to black and back when the presence sensor changes
+- Wait a set time after the presence sensor clears before the screen changes
+- Show a dimmed sleep screen instead of black while nobody is around
+- Show what the presence sensor reads under its setting
+- Start the sleep screen after 15 or 30 seconds
+
+### Fixed
+
+- Keep the screen as it is when the presence sensor becomes unavailable
+- Keep the screen dark when an automation puts it to sleep while nobody is around
+
 ## [0.8.0] - 2026-10-30
 
 ### Changed
@@ -115,6 +134,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.9.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.9.0
 [0.8.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.8.0
 [0.7.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.7.0
 [0.6.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.6.0
