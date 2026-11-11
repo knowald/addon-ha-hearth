@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.11.0] - 2026-11-12
+
+### Changed
+
+- Track [Hearth 0.11.0](https://github.com/knowald/ha-hearth/releases/tag/0.11.0)
+- Move Open controls on the media card next to play and pause
+
+### Added
+
+- Show the queue of Music Assistant players in the full player when the `mass_queue` integration is installed
+- Play a track from the Music Assistant queue with a tap
+
+### Fixed
+
+- Open the full player with a tap on the media card's art or track
+- Offer Retry when the queue could not be loaded instead of loading forever
+- Update the queue when shuffle is turned on or off
+
 ## [0.10.1] - 2026-11-01
 
 ### Changed
@@ -167,6 +185,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.11.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.11.0
 [0.10.1]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.10.1
 [0.10.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.10.0
 [0.9.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.9.0
