@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.12.0] - 2026-11-26
+
+### Changed
+
+- Track [Hearth 0.12.0](https://github.com/knowald/ha-hearth/releases/tag/0.12.0)
+- Load the popups and the search after the dashboard is on screen, and offer a reload when one could not be loaded
+
+### Added
+
+- Add a gauge card that shows one reading on a range as an arc or with a needle
+- Color parts of a gauge's range with segments set in the card editor
+- Add a chart card that draws the recorded history of up to six entities as lines or bars
+- Show the last hour, day, week or month on a chart card
+
+### Fixed
+
+- Show the energy widget's usage in kWh when the meter records Wh or MWh
+
 ## [0.11.0] - 2026-11-12
 
 ### Changed
@@ -185,6 +203,7 @@
 
 _Initial release, tracking [Hearth 0.1.0](https://github.com/knowald/ha-hearth/releases/tag/0.1.0)._
 
+[0.12.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.12.0
 [0.11.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.11.0
 [0.10.1]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.10.1
 [0.10.0]: https://github.com/knowald/addon-ha-hearth/releases/tag/0.10.0
